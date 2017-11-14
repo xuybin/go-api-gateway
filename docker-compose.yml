@@ -1,0 +1,62 @@
+version: "3"
+
+services:
+  gateway:
+      image: xuybin/go-api-gateway:1.0.0
+      ports:
+        - "8080:80"
+      links:
+        - db
+        - api
+      environment:
+        - GATEWAY_CONN_STR=root:skdfhksdhfsjhfkjhdkwtnmrentmer@tcp(db:3306)/auth
+        - GATEWAY_RESOURCE_URL=http://api:80
+      deploy:
+        replicas: 1
+        restart_policy:
+          condition: on-failure
+
+  api:
+    image: xuybin/go-mysql-api:1.0.0
+    links:
+      - db
+    environment:
+      - API_CONN_STR=root:skdfhksdhfsjhfkjhdkwtnmrentmer@tcp(db:3306)/test
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+        max_attempts: 3
+
+  db:
+    image: mysql:5.7
+    ports:
+      - "8083:3306"
+    volumes:
+      - db-data:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=skdfhksdhfsjhfkjhdkwtnmrentmer
+    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci --default-time_zone='+8:00'  # The simple way to override the mysql config.
+    deploy:
+      restart_policy:
+        condition: any
+        max_attempts: 3
+      placement:
+        constraints: [node.role == manager]
+
+  visualizer:
+    image: dockersamples/visualizer:stable
+    ports:
+      - "8081:8080"
+    stop_grace_period: 1m30s
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"
+    deploy:
+      restart_policy:
+        condition: any
+        max_attempts: 3
+      placement:
+        constraints: [node.role == manager]
+
+volumes:
+  db-data:
