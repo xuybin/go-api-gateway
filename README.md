@@ -45,7 +45,7 @@ docker run -d --restart=always -p 80:80 -e GATEWAY_CONN_STR='user:pass@tcp(mysql
 ```
 docker swarm  deployment example:
 ```bash
-curl -s -L https://raw.githubusercontent.com/xuybin/go-api-gateway/master/docker-compose.yml > docker-compose.yml && docker stack deploy -c docker-compose.yml mystack
+curl -s -L https://raw.githubusercontent.com/xuybin/go-api-gateway/master/docker-compose.yml >docker-compose.yml && docker stack deploy -c docker-compose.yml mystack
 docker stack ps mystack
 docker stack rm mystack
 ```
