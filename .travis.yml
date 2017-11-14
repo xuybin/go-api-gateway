@@ -17,7 +17,7 @@ deploy:
   on:
     tags: true
     go: 1.9.2
-    repo: xuybin/go-mysql-api
+    repo: xuybin/go-api-gateway
 after_deploy: 'curl -H "Content-Type: application/json" --data "{\"source_type\": \"Tag\", \"source_name\": \"$TRAVIS_TAG\"}" -X POST https://registry.hub.docker.com/u/xuybin/go-api-gateway/trigger/$DOCKER_TOKEN/'
 env:
   global:
