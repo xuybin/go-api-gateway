@@ -5,6 +5,9 @@ services:
       image: xuybin/go-api-gateway:1.0.0
       ports:
         - "8080:80"
+      depends_on:
+        - db
+        - api
       links:
         - db
         - api
@@ -18,6 +21,8 @@ services:
 
   api:
     image: xuybin/go-mysql-api:1.0.0
+    depends_on:
+      - db
     links:
       - db
     environment:
