@@ -2,22 +2,22 @@ version: "3"
 
 services:
   gateway:
-      image: xuybin/go-api-gateway:1.0.0
-      ports:
-        - "8080:80"
-      depends_on:
-        - db
-        - api
-      links:
-        - db
-        - api
-      environment:
-        - GATEWAY_CONN_STR=root:skdfhksdhfsjhfkjhdkwtnmrentmer@tcp(db:3306)/auth
-        - GATEWAY_RESOURCE_URL=http://api:80
-      deploy:
-        replicas: 1
-        restart_policy:
-          condition: on-failure
+    image: xuybin/go-api-gateway:1.0.0
+    ports:
+      - "8080:80"
+    depends_on:
+      - db
+      - api
+    links:
+      - db
+      - api
+    environment:
+      - GATEWAY_CONN_STR=root:skdfhksdhfsjhfkjhdkwtnmrentmer@tcp(db:3306)/auth
+      - GATEWAY_RESOURCE_URL=http://api:80
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
 
   api:
     image: xuybin/go-mysql-api:1.0.0
