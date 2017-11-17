@@ -11,7 +11,7 @@ documents will be wrote later.
 
 ## ARCH
 
-![arch](https://res.cloudinary.com/digf90pwi/image/upload/v1502367434/go-simple-api-gatway_1_grgl5o.png)
+![arch](https://raw.githubusercontent.com/xuybin/go-api-gateway/master/docs/arch.png)
 
 ## CONFIGURATION
 
