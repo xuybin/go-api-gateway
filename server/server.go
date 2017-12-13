@@ -370,7 +370,7 @@ func initSwaggerJSON() (s *spec.Swagger){
 		"/policy/metadata/":{PathItemProps:spec.PathItemProps{Head:NewOperation(
 				metadataTag,
 				fmt.Sprintf("从DB加载最新的元数据"),
-				fmt.Sprintf("策略更后,会立即生效,但手工变更数据库除外,此时应使用当前api"),
+				fmt.Sprintf("策略变更后会立即生效,但手动修改数据库除外,此时应使用当前api"),
 				[]spec.Parameter{},
 				fmt.Sprintf("无返回"),
 				&spec.Schema{
