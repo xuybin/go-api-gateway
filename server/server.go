@@ -112,6 +112,7 @@ func (s *GatewayServer) mountAuthorizationEndPoints() {
 var userDefinitionModel="auth"
 var userGroupDefinitionModel ="policy_group"
 var policyDefinitionModel="policy"
+var metadataTag="metadata"
 var authTag="auth"
 var policyTag="policy"
 var policyGroupTag="policy_group"
@@ -365,6 +366,21 @@ func initSwaggerJSON() (s *spec.Swagger){
 					SwaggerSchemaProps: spec.SwaggerSchemaProps{Example: ""},
 				}),
 		}},
+		"/policy/metadata/":{PathItemProps:spec.PathItemProps{Head:NewOperation(
+				metadataTag,
+				fmt.Sprintf("从DB加载最新的元数据"),
+				fmt.Sprintf("策略更库后,,如需立即生效,则使用当前api"),
+				[]spec.Parameter{},
+				fmt.Sprintf("无返回"),
+				&spec.Schema{
+					SchemaProps: spec.SchemaProps{
+						Type: spec.StringOrArray{"integer"},
+					},
+					SwaggerSchemaProps: spec.SwaggerSchemaProps{
+						Example: 1,
+					},
+				},
+			)}},
 	}}
 	return
 }
