@@ -32,6 +32,7 @@ func createMysqlDatabase( dataSourceName string) (err error) {
 		}
 		defer engine.Close()
 		_, err = engine.Exec("CREATE DATABASE IF NOT EXISTS "+dbName)
+		_, err = engine.Exec("INSERT  INTO `"+dbName+"`.`casbin_rule`(`p_type`,`v0`,`v1`,`v2`) VALUES ('p','admin','/policy/*','(GET)|(POST)|(PUT)|(DELETE)')")
 
 	}else {
 		err=fmt.Errorf("dataSourceName:%s doesn't exist dbName",dataSourceName)
