@@ -4,7 +4,7 @@ services:
   gateway:
     image: xuybin/go-api-gateway:v1.0.0
     ports:
-      - "8080:80"
+      - "80:80"
     depends_on:
       - db
       - api
