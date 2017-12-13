@@ -58,6 +58,7 @@ func insertData(dataSourceName string) (err error) {
 			return err
 		}
 		defer engine.Close()
+		engine.Exec("DELETE FROM `"+dbName+"`.`casbin_rule` WHERE `p_type`='p' AND `v0`='admin' AND `v1`='/policy/*' AND `v2`='(GET)|(POST)|(PUT)|(DELETE)' AND `v3`IS NULL AND `v4`IS NULL AND `v5`IS NULL")
 		_, err = engine.Exec("INSERT  INTO `"+dbName+"`.`casbin_rule`(`p_type`,`v0`,`v1`,`v2`) VALUES ('p','admin','/policy/*','(GET)|(POST)|(PUT)|(DELETE)')")
 	}else {
 		err=fmt.Errorf("dataSourceName:%s doesn't exist dbName",dataSourceName)
