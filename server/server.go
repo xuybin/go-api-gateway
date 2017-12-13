@@ -70,6 +70,7 @@ func NewGatewayServer(connStr string, resourceHostStr string, defaultRole ...str
 	s.Echo.HideBanner = true
 	// load casbin policy from db
 	s.Enforcer.LoadPolicy()
+	s.Enforcer.EnableAutoSave(true)
 	return
 }
 
@@ -369,7 +370,7 @@ func initSwaggerJSON() (s *spec.Swagger){
 		"/policy/metadata/":{PathItemProps:spec.PathItemProps{Head:NewOperation(
 				metadataTag,
 				fmt.Sprintf("从DB加载最新的元数据"),
-				fmt.Sprintf("策略更库后,,如需立即生效,则使用当前api"),
+				fmt.Sprintf("策略更后,会立即生效,但手工变更数据库除外,此时应使用当前api"),
 				[]spec.Parameter{},
 				fmt.Sprintf("无返回"),
 				&spec.Schema{
