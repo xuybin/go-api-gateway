@@ -153,3 +153,11 @@ func (s *GatewayServer) removeRoleFromUser(c echo.Context) (err error) {
 }
 
 
+func (s *GatewayServer) upMetadata(c echo.Context) (err error) {
+	if err = s.Enforcer.LoadPolicy(); err != nil {
+		err=&ErrorMessage{ERR_PARAMETER, "parameter bind failed."}
+		return
+	}
+	return c.String(http.StatusOK,"")
+}
+

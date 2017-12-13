@@ -105,6 +105,8 @@ func (s *GatewayServer) mountAuthorizationEndPoints() {
 	policy.GET("/group/", s.getGroupPolicies).Name = "Get Group Policies"
 	policy.PUT("/group/", s.addGroupPolicy).Name = "Add Group To User"
 	policy.DELETE("/group/", s.removeRoleFromUser).Name = "Remove Group From User"
+
+	policy.HEAD("/metadata/", s.upMetadata).Name = "Remove Group From User"
 }
 
 var userDefinitionModel="auth"
