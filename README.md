@@ -71,7 +71,7 @@ And **go-api-gateway** provide the **swagger.json** at path **/gateway/swagger/*
 
 Because of initialization data into **casbin_rule** table
 ```bash
-p  admin  /policy/*	  (GET)|(POST)|(PUT)|(DELETE)
+p  admin  /policy/*	  (GET)|(POST)|(PUT)|(DELETE)|(HEAD)
 ```
 So register **admin** first to authorize the operation at **/gateway/docs/**
 
