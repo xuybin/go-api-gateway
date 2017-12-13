@@ -67,6 +67,11 @@ The go-mysql-api support swagger.json and provide swagger.html page
 
 Open **/gateway/docs/** to see swagger documents, the interactive documention will be helpful.
 
-And **go-api-gateway** provide the *swagger.json* at path **/gateway/swagger/**
+And **go-api-gateway** provide the **swagger.json** at path **/gateway/swagger/**
 
+Because of initialization data into **casbin_rule** table
+```bash
+p  admin  /policy/*	  (GET)|(POST)|(PUT)|(DELETE)
+```
+So register **admin** first to authorize the operation at **/gateway/docs/**
 
